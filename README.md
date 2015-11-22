@@ -2,6 +2,9 @@
 With RecyclerViewManager supports PullToRefresh and LoadMore, U can also add headers or footers for RecyclerView.
 Also supports onItemClickEvent.
 
+Use setMode() if you want it PullDown or LoadMore only.
+With RecyclerMode.PullDown replace setOnRefreshListener() to setOnPullDownListener(), and use setOnLoadMoreListener() in the same way.
+
 ![RecyclerViewManagerDemo.gif](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
 
 Layout:
