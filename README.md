@@ -45,3 +45,22 @@ Usage in Activity or some others:
                     }
                 })
                 .into(recyclerView, this);
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case PULL_DOWN:
+                    mDatas.add(0, "new Item");
+                    break;
+                case LOAD_MORE:
+                    for (int i = 0; i < 10; i++){
+                        mDatas.add("item" + (counts + i));
+                    }
+                    counts = counts + 10;
+                    break;
+            }
+            RecyclerViewManager.onRefreshCompleted();
+            RecyclerViewManager.notifyDataSetChanged();
+        }
+    };

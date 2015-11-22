@@ -46,8 +46,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/space/sye/z/recyclerviewmanager/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59805113">
-              <caret line="56" column="46" selection-start-line="55" selection-start-column="8" selection-end-line="56" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.65651643">
+              <caret line="106" column="6" selection-start-line="89" selection-start-column="4" selection-end-line="106" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -3144,8 +3144,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/space/sye/z/recyclerviewmanager/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59805113">
-          <caret line="56" column="46" selection-start-line="55" selection-start-column="8" selection-end-line="56" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.65651643">
+          <caret line="106" column="6" selection-start-line="89" selection-start-column="4" selection-end-line="106" selection-end-column="6" />
           <folding />
         </state>
       </provider>
