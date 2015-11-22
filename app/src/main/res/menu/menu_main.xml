@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="space.sye.z.recyclerviewmanager.MainActivity">
+    <item
+        android:id="@+id/action_linear"
+        android:orderInCategory="100"
+        android:title="LinearLayout"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_grid"
+        android:orderInCategory="100"
+        android:title="GridLayout"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_staggered"
+        android:orderInCategory="100"
+        android:title="Staggered"
+        app:showAsAction="never" />
+</menu>
