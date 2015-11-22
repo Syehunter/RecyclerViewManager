@@ -2,7 +2,7 @@
 With RecyclerViewManager supports PullToRefresh and LoadMore, U can also add headers or footers for RecyclerView.
 Also supports onItemClickEvent.
 
-![](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
+![RecyclerViewManagerDemo.gif](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
 
 Layout:
 
@@ -12,6 +12,9 @@ Layout:
         android:layout_height="match_parent"/>
 
 Usage in Activity or some others:
+
+	recyclerView = (RefreshRecyclerView) findViewById(R.id.recyclerView);
+    MyAdapter myAdapter = new MyAdapter(); //a RecyclerView.Adapter
 
 	RecyclerViewManager.with(myAdapter, new LinearLayoutManager(this))
                 .setMode(RecyclerMode.BOTH)
