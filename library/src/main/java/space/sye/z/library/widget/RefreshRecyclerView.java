@@ -52,12 +52,13 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         recyclerView.setLayoutParams(params);
         addView(recyclerView);
 
-        // the following are default settings
         setResistance(1.7f);
         setRatioOfHeaderHeightToRefresh(1.2f);
         setDurationToClose(200);
         setDurationToCloseHeader(1000);
         setPullToRefresh(false);
+        //ViewPager滑动冲突
+        disableWhenHorizontalMove(true);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class RefreshRecyclerView extends PtrFrameLayout {
     }
 
     public void setAdapter(RecyclerView.Adapter adapter){
-        if (adapter == null){
+        if (null == adapter){
             throw new NullPointerException("adapter cannot be null");
         }
         recyclerView.setAdapter(adapter);
@@ -77,6 +78,13 @@ public class RefreshRecyclerView extends PtrFrameLayout {
 
     public void setLayoutManager(RecyclerView.LayoutManager layoutManager){
         recyclerView.setLayoutManager(layoutManager);
+    }
+
+    public void setItemAnimator(RecyclerView.ItemAnimator itemAnimator){
+        if (null == itemAnimator){
+            return;
+        }
+        recyclerView.setItemAnimator(itemAnimator);
     }
 
     public void setMode(RecyclerMode mode){
