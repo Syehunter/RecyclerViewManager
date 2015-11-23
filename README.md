@@ -1,5 +1,5 @@
 # RecyclerViewManager
-With RecyclerViewManager supports PullToRefresh and LoadMore, U can also add headers or footers for RecyclerView.
+RecyclerViewManager supports PullToRefresh and LoadMore, U can also add headers or footers for RecyclerView.
 Also supports onItemClickEvent.
 
 Use setMode() if you want it PullDown or LoadMore only.
