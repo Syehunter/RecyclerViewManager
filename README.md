@@ -78,3 +78,5 @@ Usage in Activity or some others:
             RecyclerViewManager.notifyDataSetChanged();
         }
     };
+    
+    Simple Introduce for RecyclerViewManager(Chinese): http://z.sye.space/2015/11/23/RecyclerViewManager/
