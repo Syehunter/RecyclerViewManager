@@ -5,6 +5,15 @@ Also supports onItemClickEvent.
 Use setMode() if you want it PullDown or LoadMore only.
 With RecyclerMode.PullDown replace setOnRefreshListener() to setOnPullDownListener(), and use setOnLoadMoreListener() in the same way.
 
+	repositories {
+	        // ...
+	        maven { url "https://jitpack.io" }
+ 	}
+ 	
+ 	dependencies {
+	        compile 'com.github.Syehunter:RecyclerViewManager:0.1.0'
+	}
+
 ![RecyclerViewManagerDemo.gif](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
 
 Layout:
