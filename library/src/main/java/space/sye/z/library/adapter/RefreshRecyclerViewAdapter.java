@@ -39,6 +39,7 @@ public class RefreshRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
     private int mHeaderViewType;
 
     private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
     private RecyclerView.LayoutManager mLayoutManager;
 
     public RefreshRecyclerViewAdapter() {
@@ -206,6 +207,14 @@ public class RefreshRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
                         }
                     });
                 }
+                if (null != mOnItemLongClickListener){
+                    holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            return mOnItemLongClickListener.onItemLongCLick(holder, position - getHeadersCount());
+                        }
+                    });
+                }
             } else {
                 if(null != mLayoutManager && mLayoutManager instanceof StaggeredGridLayoutManager){
                     StaggeredGridLayoutManager.LayoutParams params = new StaggeredGridLayoutManager.LayoutParams(
@@ -355,6 +364,14 @@ public class RefreshRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener){
         this.mOnItemClickListener = onItemClickListener;
+    }
+
+    public interface OnItemLongClickListener{
+        boolean onItemLongCLick(RecyclerView.ViewHolder holder, int position);
+    }
+
+    public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener){
+        this.mOnItemLongClickListener = onItemLongClickListener;
     }
 
 }

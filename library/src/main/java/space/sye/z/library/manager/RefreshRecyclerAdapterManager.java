@@ -35,6 +35,7 @@ public class RefreshRecyclerAdapterManager {
     private OnPullDownListener mOnPullDownListener;
     private OnLoadMoreListener mOnLoadMoreListener;
     private RefreshRecyclerViewAdapter.OnItemClickListener mOnItemClickListener;
+    private RefreshRecyclerViewAdapter.OnItemLongClickListener mOnItemLongClickListener;
     private RecyclerView.ItemDecoration mDecor;
     private LoadMoreRecyclerListener loadMoreRecyclerListener;
     private RecyclerView.ItemAnimator mItemAnimator;
@@ -127,6 +128,12 @@ public class RefreshRecyclerAdapterManager {
         return getInstance();
     }
 
+    public RefreshRecyclerAdapterManager setOnItemLongClickListener(
+            RefreshRecyclerViewAdapter.OnItemLongClickListener onItemLongClickListener){
+        this.mOnItemLongClickListener = onItemLongClickListener;
+        return getInstance();
+    }
+
     public void onRefreshCompleted(){
         if (null == recyclerView){
             throw new NullPointerException("recyclerView is null");
@@ -191,6 +198,7 @@ public class RefreshRecyclerAdapterManager {
         recyclerView.setItemAnimator(mItemAnimator);
 
         mAdapter.setOnItemClickListener(mOnItemClickListener);
+        mAdapter.setOnItemLongClickListener(mOnItemLongClickListener);
         recyclerView.setLayoutManager(mLayoutManager);
         this.recyclerView = recyclerView;
     }
