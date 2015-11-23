@@ -35,8 +35,9 @@ public class RefreshRecyclerAdapterManager {
     private OnPullDownListener mOnPullDownListener;
     private OnLoadMoreListener mOnLoadMoreListener;
     private RefreshRecyclerViewAdapter.OnItemClickListener mOnItemClickListener;
-    private RecyclerView.ItemDecoration decor;
+    private RecyclerView.ItemDecoration mDecor;
     private LoadMoreRecyclerListener loadMoreRecyclerListener;
+    private RecyclerView.ItemAnimator mItemAnimator;
 
     public RefreshRecyclerAdapterManager(
             RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
@@ -151,15 +152,19 @@ public class RefreshRecyclerAdapterManager {
         return recyclerView;
     }
 
+    public void setItemAnimator(RecyclerView.ItemAnimator itemAnimator){
+        this.mItemAnimator = itemAnimator;
+    }
+
     public void addItemDecoration(RecyclerView.ItemDecoration decor){
-        this.decor = decor;
+        this.mDecor = decor;
     }
 
     public void into(RefreshRecyclerView recyclerView, Context context){
         if (null == recyclerView){
             throw new NullPointerException("Couldn't resolve a null object reference of RefreshRecyclerView");
         }
-        this.recyclerView = recyclerView;
+
         mAdapter.putLayoutManager(mLayoutManager);
         recyclerView.setAdapter(mAdapter);
 
@@ -167,7 +172,7 @@ public class RefreshRecyclerAdapterManager {
         //为RefreshRecyclerView添加滚动监听
         loadMoreRecyclerListener = new LoadMoreRecyclerListener(context, mode);
         recyclerView.addOnScrollListener(loadMoreRecyclerListener);
-        recyclerView.addItemDecoration(decor);
+        recyclerView.addItemDecoration(mDecor);
         if (RecyclerMode.BOTH == mode){
             if (null != mOnBothRefreshListener){
                 recyclerView.setOnBothRefreshListener(mOnBothRefreshListener);
@@ -182,11 +187,12 @@ public class RefreshRecyclerAdapterManager {
             }
         }
 
-        recyclerView.addItemDecoration(decor);
+        recyclerView.addItemDecoration(mDecor);
+        recyclerView.setItemAnimator(mItemAnimator);
 
         mAdapter.setOnItemClickListener(mOnItemClickListener);
         recyclerView.setLayoutManager(mLayoutManager);
-
+        this.recyclerView = recyclerView;
     }
 
 }
