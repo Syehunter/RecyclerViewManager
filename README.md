@@ -13,7 +13,7 @@ With RecyclerMode.PullDown replace setOnRefreshListener() to setOnPullDownListen
 	}
  	
  	dependencies {
-	        compile 'com.github.Syehunter:RecyclerViewManager:0.1.0'
+	        compile 'com.github.Syehunter:RecyclerViewManager:0.1.1'
 	}
 
 ![RecyclerViewManagerDemo.gif](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
@@ -35,7 +35,7 @@ Usage in Activity or some others:
                 .addHeaderView(header)
                 .addHeaderView(header2)
                 .addFooterView(footer)
-                .setOnRefreshListener(new OnBothRefreshListener() {
+                .setOnBothRefreshListener(new OnBothRefreshListener() {
                     @Override
                     public void onPullDown() {
                         //模拟网络请求
