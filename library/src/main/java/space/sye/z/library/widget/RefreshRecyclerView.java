@@ -25,7 +25,6 @@ public class RefreshRecyclerView extends PtrFrameLayout {
     private PtrFrameLayout.LayoutParams params;
     private LoadMoreRecyclerListener mOnScrollListener;
     private RecyclerMode mode;
-    private View mHeaderView;
 
     public RefreshRecyclerView(Context context) {
         super(context);
@@ -61,14 +60,6 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         disableWhenHorizontalMove(true);
     }
 
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent e) {
-        if (null == mHeaderView){
-            return dispatchTouchEventSupper(e);
-        }
-        return super.dispatchTouchEvent(e);
-    }
-
     public void setAdapter(RecyclerView.Adapter adapter){
         if (null == adapter){
             throw new NullPointerException("adapter cannot be null");
@@ -91,16 +82,9 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         this.mode = mode;
         if (RecyclerMode.NONE == mode || RecyclerMode.BOTTOM == mode){
 
-            if (null != mHeaderView){
-                mHeaderView = null;
-                removeView(mHeaderView);
-            }
+            setEnabled(false);
         } else {
-            if(null == mHeaderView){
-                mHeaderView = new RotateLoadingLayout(mContext, mode);
-                ((RotateLoadingLayout)mHeaderView).onRefresh();
-            }
-            setRefreshHeader(mHeaderView);
+            setEnabled(true);
         }
 
         if(null != mOnScrollListener){
@@ -192,8 +176,4 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         }
     }
 
-    public void setRefreshHeader(View header) {
-        mHeaderView = header;
-        setHeaderView(header);
-    }
 }

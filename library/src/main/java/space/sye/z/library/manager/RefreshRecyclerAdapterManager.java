@@ -84,7 +84,7 @@ public class RefreshRecyclerAdapterManager {
         return mAdapter;
     }
 
-    public RefreshRecyclerAdapterManager setOnRefreshListener(OnBothRefreshListener onBothRefreshListener){
+    public RefreshRecyclerAdapterManager setOnBothRefreshListener(OnBothRefreshListener onBothRefreshListener){
         this.mOnBothRefreshListener = onBothRefreshListener;
         return getInstance();
     }
