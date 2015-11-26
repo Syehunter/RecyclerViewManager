@@ -79,4 +79,4 @@ Usage in Activity or some others:
         }
     };
     
-    Simple Introduction for RecyclerViewManager(Chinese): http://z.sye.space/2015/11/23/RecyclerViewManager/
+Simple Introduction for RecyclerViewManager(Chinese): http://z.sye.space/2015/11/23/RecyclerViewManager/
