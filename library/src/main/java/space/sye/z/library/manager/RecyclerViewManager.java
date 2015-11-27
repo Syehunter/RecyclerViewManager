@@ -12,13 +12,28 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import space.sye.z.library.adapter.RefreshRecyclerViewAdapter;
+import space.sye.z.library.listener.LoadMoreRecyclerListener;
+import space.sye.z.library.listener.OnBothRefreshListener;
+import space.sye.z.library.listener.OnLoadMoreListener;
+import space.sye.z.library.listener.OnPullDownListener;
+import space.sye.z.library.widget.RefreshRecyclerView;
 
 /**
  * Created by Syehunter on 2015/11/19.
  */
 public class RecyclerViewManager {
 
+    private static final RecyclerViewManager mInstance = new RecyclerViewManager();
+
     private static RefreshRecyclerAdapterManager refreshRecyclerAdapterManager;
+
+    private RecyclerViewManager(){
+
+    }
+
+    public static RecyclerViewManager getInstance(){
+        return mInstance;
+    }
 
     public static RefreshRecyclerAdapterManager with(
             RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
