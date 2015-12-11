@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import space.sye.z.library.adapter.RefreshRecyclerViewAdapter;
 import space.sye.z.library.listener.OnBothRefreshListener;
+import space.sye.z.library.listener.OnPullDownListener;
 import space.sye.z.library.manager.RecyclerMode;
 import space.sye.z.library.manager.RecyclerViewManager;
 import space.sye.z.library.widget.RefreshRecyclerView;
@@ -54,24 +55,32 @@ public class MainActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter();
 
         RecyclerViewManager.with(myAdapter, new LinearLayoutManager(this))
-                .setMode(RecyclerMode.BOTH)
+                .setMode(RecyclerMode.TOP)
                 .addHeaderView(header)
                 .addHeaderView(header2)
                 .addFooterView(footer)
-                .setOnBothRefreshListener(new OnBothRefreshListener() {
+//                .setOnBothRefreshListener(new OnBothRefreshListener() {
+//                    @Override
+//                    public void onPullDown() {
+//                        //模拟网络请求
+//                        Message msg = new Message();
+//                        msg.what = PULL_DOWN;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//
+//                    @Override
+//                    public void onLoadMore() {
+//                        //模拟网络请求
+//                        Message msg = new Message();
+//                        msg.what = LOAD_MORE;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//                })
+                .setOnPullDownListener(new OnPullDownListener() {
                     @Override
                     public void onPullDown() {
-                        //模拟网络请求
                         Message msg = new Message();
                         msg.what = PULL_DOWN;
-                        mHandler.sendMessageDelayed(msg, 2000);
-                    }
-
-                    @Override
-                    public void onLoadMore() {
-                        //模拟网络请求
-                        Message msg = new Message();
-                        msg.what = LOAD_MORE;
                         mHandler.sendMessageDelayed(msg, 2000);
                     }
                 })
