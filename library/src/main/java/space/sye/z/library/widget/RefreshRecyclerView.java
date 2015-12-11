@@ -10,6 +10,7 @@ import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.PtrUIHandler;
 import space.sye.z.library.R;
 import space.sye.z.library.listener.LoadMoreRecyclerListener;
 import space.sye.z.library.listener.OnBothRefreshListener;
@@ -27,7 +28,7 @@ public class RefreshRecyclerView extends PtrFrameLayout {
     private PtrFrameLayout.LayoutParams params;
     private LoadMoreRecyclerListener mOnScrollListener;
     private RecyclerMode mode;
-    private View mHeaderView;
+    private PtrClassicDefaultHeader mHeaderView;
 
     public RefreshRecyclerView(Context context) {
         super(context);
@@ -62,6 +63,10 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         setPullToRefresh(false);
         //ViewPager滑动冲突
         disableWhenHorizontalMove(true);
+
+        mHeaderView = new PtrClassicDefaultHeader(mContext);
+        setHeaderView(mHeaderView);
+        addPtrUIHandler(mHeaderView);
     }
 
     public void setAdapter(RecyclerView.Adapter adapter){
@@ -126,10 +131,6 @@ public class RefreshRecyclerView extends PtrFrameLayout {
 
         if (RecyclerMode.BOTH == mode || RecyclerMode.TOP == mode){
             //当前允许下拉刷新
-            if (null == mHeaderView){
-                //用户未设置过下拉刷新头
-                setHeaderView(new RotateLoadingLayout(mContext, RecyclerMode.TOP));
-            }
 
             setPtrHandler(new PtrHandler() {
                 @Override
@@ -158,10 +159,6 @@ public class RefreshRecyclerView extends PtrFrameLayout {
 
         if (RecyclerMode.BOTH == mode || RecyclerMode.TOP == mode){
             //当前允许下拉刷新
-            if (null == mHeaderView){
-                //用户未设置过下拉刷新头
-                setHeaderView(new RotateLoadingLayout(mContext, RecyclerMode.TOP));
-            }
             setPtrHandler(new PtrHandler() {
 
                 @Override
@@ -189,9 +186,13 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         }
     }
 
-    public void setRefreshHeader(View headerView){
+    public void setRefreshHeader(PtrClassicDefaultHeader headerView){
+        if (null != mHeaderView){
+            removePtrUIHandler(mHeaderView);
+        }
         mHeaderView = headerView;
         setHeaderView(mHeaderView);
+        addPtrUIHandler(mHeaderView);
     }
 
 }
