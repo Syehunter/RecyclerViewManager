@@ -32,8 +32,8 @@
       <file leaf-file-name="RefreshRecyclerView.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/library/src/main/java/space/sye/z/library/widget/RefreshRecyclerView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.6580405">
-              <caret line="135" column="25" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
+            <state vertical-scroll-proportion="1.1534196">
+              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
               <folding>
                 <element signature="e#4569#4570#0" expanded="true" />
                 <element signature="e#4630#4631#0" expanded="true" />
@@ -1949,7 +1949,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="F:\Github\RecyclerViewManager" value="5799404317273" />
+        <entry key="F:\Github\RecyclerViewManager" value="5799408534970" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2425,6 +2425,7 @@
         <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/in.srain.cube/ultra-ptr/1.0.11/res/layout/cube_ptr_classic_default_header.xml" />
         <option value="$PROJECT_DIR$/library/src/main/java/space/sye/z/library/widget/ClassicHeader.java" />
         <option value="$PROJECT_DIR$/library/src/main/java/space/sye/z/library/widget/RefreshRecyclerView.java" />
+        <option value="$PROJECT_DIR$/library/build.gradle" />
       </list>
     </option>
   </component>
@@ -2969,10 +2970,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/library/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44362292">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/library/src/main/java/space/sye/z/library/widget/RefreshRecyclerView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.6580405">
-          <caret line="135" column="25" selection-start-line="135" selection-start-column="25" selection-end-line="135" selection-end-column="25" />
+        <state vertical-scroll-proportion="1.1534196">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
           <folding>
             <element signature="e#4569#4570#0" expanded="true" />
             <element signature="e#4630#4631#0" expanded="true" />
