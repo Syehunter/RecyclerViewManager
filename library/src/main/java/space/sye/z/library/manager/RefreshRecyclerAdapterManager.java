@@ -18,7 +18,7 @@ import space.sye.z.library.listener.LoadMoreRecyclerListener;
 import space.sye.z.library.listener.OnLoadMoreListener;
 import space.sye.z.library.listener.OnPullDownListener;
 import space.sye.z.library.listener.OnBothRefreshListener;
-import space.sye.z.library.widget.RefreshRecyclerView;
+import space.sye.z.library.RefreshRecyclerView;
 
 /**
  * The Management Class for RefreshRecyclerViewAdapter

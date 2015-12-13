@@ -12,11 +12,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import space.sye.z.library.adapter.RefreshRecyclerViewAdapter;
-import space.sye.z.library.listener.LoadMoreRecyclerListener;
-import space.sye.z.library.listener.OnBothRefreshListener;
-import space.sye.z.library.listener.OnLoadMoreListener;
-import space.sye.z.library.listener.OnPullDownListener;
-import space.sye.z.library.widget.RefreshRecyclerView;
 
 /**
  * Created by Syehunter on 2015/11/19.
@@ -50,20 +45,6 @@ public class RecyclerViewManager {
             RecyclerView.Adapter adapter, RecyclerView.LayoutManager layoutManager) {
         refreshRecyclerAdapterManager = new RefreshRecyclerAdapterManager(adapter, layoutManager);
         return refreshRecyclerAdapterManager;
-    }
-
-    public static void notifyDataSetChanged() {
-        if (null == refreshRecyclerAdapterManager) {
-            throw new RuntimeException("adapter has not been inited");
-        }
-        refreshRecyclerAdapterManager.getAdapter().notifyDataSetChanged();
-    }
-
-    public static void onRefreshCompleted() {
-        if (null == refreshRecyclerAdapterManager) {
-            throw new RuntimeException("adapter has not been inited");
-        }
-        refreshRecyclerAdapterManager.onRefreshCompleted();
     }
 
     public static void setMode(RecyclerMode mode){

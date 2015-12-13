@@ -24,7 +24,7 @@ import space.sye.z.library.listener.OnBothRefreshListener;
 import space.sye.z.library.listener.OnPullDownListener;
 import space.sye.z.library.manager.RecyclerMode;
 import space.sye.z.library.manager.RecyclerViewManager;
-import space.sye.z.library.widget.RefreshRecyclerView;
+import space.sye.z.library.RefreshRecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PULL_DOWN = 1;
     private static final int LOAD_MORE = 2;
     private int counts = 10;
+    private MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,38 +53,38 @@ public class MainActivity extends AppCompatActivity {
         View footer = View.inflate(this, R.layout.recycler_footer, null);
 
         recyclerView = (RefreshRecyclerView) findViewById(R.id.recyclerView);
-        MyAdapter myAdapter = new MyAdapter();
+        myAdapter = new MyAdapter();
 
         RecyclerViewManager.with(myAdapter, new LinearLayoutManager(this))
-                .setMode(RecyclerMode.TOP)
+                .setMode(RecyclerMode.BOTH)
                 .addHeaderView(header)
                 .addHeaderView(header2)
                 .addFooterView(footer)
-//                .setOnBothRefreshListener(new OnBothRefreshListener() {
-//                    @Override
-//                    public void onPullDown() {
-//                        //模拟网络请求
-//                        Message msg = new Message();
-//                        msg.what = PULL_DOWN;
-//                        mHandler.sendMessageDelayed(msg, 2000);
-//                    }
-//
-//                    @Override
-//                    public void onLoadMore() {
-//                        //模拟网络请求
-//                        Message msg = new Message();
-//                        msg.what = LOAD_MORE;
-//                        mHandler.sendMessageDelayed(msg, 2000);
-//                    }
-//                })
-                .setOnPullDownListener(new OnPullDownListener() {
+                .setOnBothRefreshListener(new OnBothRefreshListener() {
                     @Override
                     public void onPullDown() {
+                        //模拟网络请求
                         Message msg = new Message();
                         msg.what = PULL_DOWN;
                         mHandler.sendMessageDelayed(msg, 2000);
                     }
+
+                    @Override
+                    public void onLoadMore() {
+                        //模拟网络请求
+                        Message msg = new Message();
+                        msg.what = LOAD_MORE;
+                        mHandler.sendMessageDelayed(msg, 2000);
+                    }
                 })
+//                .setOnPullDownListener(new OnPullDownListener() {
+//                    @Override
+//                    public void onPullDown() {
+//                        Message msg = new Message();
+//                        msg.what = PULL_DOWN;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//                })
                 .setOnItemClickListener(new RefreshRecyclerViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(RecyclerView.ViewHolder holder, int position) {
@@ -107,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                     counts = counts + 10;
                     break;
             }
-            RecyclerViewManager.onRefreshCompleted();
-            RecyclerViewManager.notifyDataSetChanged();
+            recyclerView.onRefreshCompleted();
+            myAdapter.notifyDataSetChanged();
         }
     };
 
