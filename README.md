@@ -13,7 +13,7 @@ With RecyclerMode.PullDown replace setOnRefreshListener() to setOnPullDownListen
 	}
  	
  	dependencies {
-	    compile 'com.github.Syehunter:RecyclerViewManager:0.1.3'
+	    compile 'com.github.Syehunter:RecyclerViewManager:0.1.4'
 	}
 
 ![RecyclerViewManagerDemo.gif](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
@@ -74,9 +74,11 @@ Usage in Activity or some others:
                     counts = counts + 10;
                     break;
             }
-            RecyclerViewManager.onRefreshCompleted();
-            RecyclerViewManager.notifyDataSetChanged();
+            recyclerView.onRefreshCompleted();
+            mAdapter.notifyDataSetChanged();
         }
     };
+    
+ Use recyclerView.real() to get the real RecyclerView if you want to use methods of it.
     
 Simple Introduction for RecyclerViewManager(Chinese): http://z.sye.space/2015/11/23/RecyclerViewManager/
