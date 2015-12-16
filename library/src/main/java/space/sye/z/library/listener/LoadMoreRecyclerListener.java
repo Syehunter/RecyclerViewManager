@@ -49,6 +49,8 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
 
+        hasCompleted = false;
+
         RecyclerView.LayoutManager mLayoutManager = recyclerView.getLayoutManager();
 
         //初始化firstVisibleItemPosition和lastVisibleItemPosition
