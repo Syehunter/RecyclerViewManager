@@ -32,6 +32,11 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
     private RefreshLoadingLayout mFooterLoadingLayout;
 
     private boolean isLoading = false;
+    /**
+     * 加载更多之前RecyclerView的item数量
+     */
+    private int mOldItemCount;
+    private RecyclerView mRecyclerView;
 
     public LoadMoreRecyclerListener(Context context, RecyclerMode mode) {
         this.mContext = context;
@@ -123,12 +128,14 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
      * 添加LoadMore布局
      */
     private void addFooterLoadinLayout(RecyclerView recyclerView) {
+        mRecyclerView = recyclerView;
         isLoading = true;
         if (null == mFooterLoadingLayout) {
             mFooterLoadingLayout = new RotateLoadingLayout(mContext, RecyclerMode.BOTTOM);
-            mAdapter.addFooterView(mFooterLoadingLayout);
-            recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
         }
+        mAdapter.addFooterView(mFooterLoadingLayout);
+        mOldItemCount = mAdapter.getItemCount();
+        recyclerView.smoothScrollToPosition(mOldItemCount - 1);
         mFooterLoadingLayout.onRefresh();
         mFooterLoadingLayout.setVisibility(View.VISIBLE);
     }
@@ -181,6 +188,7 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
         if (null != mAdapter && mAdapter.getFootersCount() > 0){
             if (mAdapter.getLastFooter() instanceof RefreshLoadingLayout){
                 isLoading = false;
+                mAdapter.removeFooter(mFooterLoadingLayout);
                 mFooterLoadingLayout.setVisibility(View.GONE);
             }
         }
