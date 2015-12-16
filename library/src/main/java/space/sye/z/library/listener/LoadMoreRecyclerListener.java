@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import space.sye.z.library.adapter.RefreshRecyclerViewAdapter;
 import space.sye.z.library.manager.RecyclerMode;
@@ -36,7 +37,8 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
      * 加载更多之前RecyclerView的item数量
      */
     private int mOldItemCount;
-    private RecyclerView mRecyclerView;
+
+    private boolean hasCompleted = false;
 
     public LoadMoreRecyclerListener(Context context, RecyclerMode mode) {
         this.mContext = context;
@@ -103,7 +105,12 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
                 && mScrollState == RecyclerView.SCROLL_STATE_IDLE
                 && lastVisibleItemPosition >= totalItemCount - 1)) {
 
-            if(isLoading){
+            if (isLoading) {
+                return;
+            }
+
+            if (hasCompleted) {
+                hasCompleted = !hasCompleted;
                 return;
             }
 
@@ -128,7 +135,6 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
      * 添加LoadMore布局
      */
     private void addFooterLoadinLayout(RecyclerView recyclerView) {
-        mRecyclerView = recyclerView;
         isLoading = true;
         if (null == mFooterLoadingLayout) {
             mFooterLoadingLayout = new RotateLoadingLayout(mContext, RecyclerMode.BOTTOM);
@@ -188,9 +194,10 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
         if (null != mAdapter && mAdapter.getFootersCount() > 0){
             if (mAdapter.getLastFooter() instanceof RefreshLoadingLayout){
                 isLoading = false;
+                hasCompleted = true;
                 mAdapter.removeFooter(mFooterLoadingLayout);
-                mFooterLoadingLayout.setVisibility(View.GONE);
             }
         }
     }
+
 }

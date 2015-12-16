@@ -3,6 +3,7 @@ package space.sye.z.library;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
@@ -26,6 +27,7 @@ public class RefreshRecyclerView extends PtrFrameLayout {
     private LoadMoreRecyclerListener mOnScrollListener;
     private RecyclerMode mode;
     private PtrClassicDefaultHeader mHeaderView;
+    private int downY;
 
     public RefreshRecyclerView(Context context) {
         super(context);
