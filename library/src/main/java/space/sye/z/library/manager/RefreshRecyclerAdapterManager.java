@@ -159,12 +159,14 @@ public class RefreshRecyclerAdapterManager {
         return recyclerView;
     }
 
-    public void setItemAnimator(RecyclerView.ItemAnimator itemAnimator){
+    public RefreshRecyclerAdapterManager setItemAnimator(RecyclerView.ItemAnimator itemAnimator){
         this.mItemAnimator = itemAnimator;
+        return getInstance();
     }
 
-    public void addItemDecoration(RecyclerView.ItemDecoration decor){
+    public RefreshRecyclerAdapterManager addItemDecoration(RecyclerView.ItemDecoration decor){
         this.mDecor = decor;
+        return getInstance();
     }
 
     public void into(RefreshRecyclerView recyclerView, Context context){
