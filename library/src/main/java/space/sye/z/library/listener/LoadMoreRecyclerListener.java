@@ -39,7 +39,7 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
     /**
      * 通过滚动方向判断是否允许上拉加载
      */
-    public boolean isLoadingMoreEnabled = false;
+    public boolean isLoadingMoreEnabled = true;
     /**
      * 加载更多之前RecyclerView的item数量
      */
