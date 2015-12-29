@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PULL_DOWN = 1;
     private static final int LOAD_MORE = 2;
-    private int counts = 10;
+    private int counts = 1;
     private MyAdapter myAdapter;
     private int page = 1;
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onLoadMore() {
                         //模拟网络请求
-                        if (page > 2) {
+                        if (page > 5) {
                             //模拟共有5页数据
                             Toast.makeText(MainActivity.this, "No more datas!", Toast.LENGTH_SHORT).show();
                             recyclerView.onRefreshCompleted();
@@ -110,10 +110,10 @@ public class MainActivity extends AppCompatActivity {
                     mDatas.add(0, "new Item");
                     break;
                 case LOAD_MORE:
-                    for (int i = 0; i < 10; i++){
+                    for (int i = 0; i < 1; i++){
                         mDatas.add("item" + (counts + i));
                     }
-                    counts = counts + 10;
+                    counts = counts + 1;
                     break;
             }
             recyclerView.onRefreshCompleted();
