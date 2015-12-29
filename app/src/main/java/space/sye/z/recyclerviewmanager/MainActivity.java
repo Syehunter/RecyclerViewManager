@@ -58,43 +58,19 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter();
 
         RecyclerViewManager.with(myAdapter, new LinearLayoutManager(this))
-                .setMode(RecyclerMode.BOTTOM)
+                .setMode(RecyclerMode.BOTH)
                 .addHeaderView(header)
                 .addHeaderView(header2)
                 .addFooterView(footer)
-//                .setOnBothRefreshListener(new OnBothRefreshListener() {
-//                    @Override
-//                    public void onPullDown() {
-//                        //模拟网络请求
-//                        Message msg = new Message();
-//                        msg.what = PULL_DOWN;
-//                        mHandler.sendMessageDelayed(msg, 2000);
-//                    }
-//
-//                    @Override
-//                    public void onLoadMore() {
-//                        //模拟网络请求
-//                        if (page > 5) {
-//                            //模拟共有5页数据
-//                            Toast.makeText(MainActivity.this, "No more datas!", Toast.LENGTH_SHORT).show();
-//                            recyclerView.onRefreshCompleted();
-//                            return;
-//                        }
-//                        page++;
-//                        Message msg = new Message();
-//                        msg.what = LOAD_MORE;
-//                        mHandler.sendMessageDelayed(msg, 2000);
-//                    }
-//                })
-//                .setOnPullDownListener(new OnPullDownListener() {
-//                    @Override
-//                    public void onPullDown() {
-//                        Message msg = new Message();
-//                        msg.what = PULL_DOWN;
-//                        mHandler.sendMessageDelayed(msg, 2000);
-//                    }
-//                })
-                .setOnLoadMoreListener(new OnLoadMoreListener() {
+                .setOnBothRefreshListener(new OnBothRefreshListener() {
+                    @Override
+                    public void onPullDown() {
+                        //模拟网络请求
+                        Message msg = new Message();
+                        msg.what = PULL_DOWN;
+                        mHandler.sendMessageDelayed(msg, 2000);
+                    }
+
                     @Override
                     public void onLoadMore() {
                         //模拟网络请求
@@ -110,6 +86,30 @@ public class MainActivity extends AppCompatActivity {
                         mHandler.sendMessageDelayed(msg, 2000);
                     }
                 })
+//                .setOnPullDownListener(new OnPullDownListener() {
+//                    @Override
+//                    public void onPullDown() {
+//                        Message msg = new Message();
+//                        msg.what = PULL_DOWN;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//                })
+//                .setOnLoadMoreListener(new OnLoadMoreListener() {
+//                    @Override
+//                    public void onLoadMore() {
+//                        //模拟网络请求
+//                        if (page > 5) {
+//                            //模拟共有5页数据
+//                            Toast.makeText(MainActivity.this, "No more datas!", Toast.LENGTH_SHORT).show();
+//                            recyclerView.onRefreshCompleted();
+//                            return;
+//                        }
+//                        page++;
+//                        Message msg = new Message();
+//                        msg.what = LOAD_MORE;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//                })
                 .setOnItemClickListener(new RefreshRecyclerViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(RecyclerView.ViewHolder holder, int position) {
