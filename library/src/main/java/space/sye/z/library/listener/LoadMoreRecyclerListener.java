@@ -39,7 +39,7 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
     /**
      * 通过滚动方向判断是否允许上拉加载
      */
-    private boolean isLoadingMoreEnabled = false;
+    public boolean isLoadingMoreEnabled = false;
     /**
      * 加载更多之前RecyclerView的item数量
      */
@@ -57,8 +57,6 @@ public class LoadMoreRecyclerListener extends RecyclerView.OnScrollListener {
         super.onScrolled(recyclerView, dx, dy);
 
         hasCompleted = false;
-
-        isLoadingMoreEnabled = dy > 10;
 
         RecyclerView.LayoutManager mLayoutManager = recyclerView.getLayoutManager();
 

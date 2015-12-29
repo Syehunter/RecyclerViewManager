@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import space.sye.z.library.adapter.RefreshRecyclerViewAdapter;
 import space.sye.z.library.listener.OnBothRefreshListener;
+import space.sye.z.library.listener.OnLoadMoreListener;
 import space.sye.z.library.listener.OnPullDownListener;
 import space.sye.z.library.manager.RecyclerMode;
 import space.sye.z.library.manager.RecyclerViewManager;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PULL_DOWN = 1;
     private static final int LOAD_MORE = 2;
-    private int counts = 1;
+    private int counts = 10;
     private MyAdapter myAdapter;
     private int page = 1;
 
@@ -57,19 +58,43 @@ public class MainActivity extends AppCompatActivity {
         myAdapter = new MyAdapter();
 
         RecyclerViewManager.with(myAdapter, new LinearLayoutManager(this))
-                .setMode(RecyclerMode.BOTH)
+                .setMode(RecyclerMode.BOTTOM)
                 .addHeaderView(header)
                 .addHeaderView(header2)
                 .addFooterView(footer)
-                .setOnBothRefreshListener(new OnBothRefreshListener() {
-                    @Override
-                    public void onPullDown() {
-                        //模拟网络请求
-                        Message msg = new Message();
-                        msg.what = PULL_DOWN;
-                        mHandler.sendMessageDelayed(msg, 2000);
-                    }
-
+//                .setOnBothRefreshListener(new OnBothRefreshListener() {
+//                    @Override
+//                    public void onPullDown() {
+//                        //模拟网络请求
+//                        Message msg = new Message();
+//                        msg.what = PULL_DOWN;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//
+//                    @Override
+//                    public void onLoadMore() {
+//                        //模拟网络请求
+//                        if (page > 5) {
+//                            //模拟共有5页数据
+//                            Toast.makeText(MainActivity.this, "No more datas!", Toast.LENGTH_SHORT).show();
+//                            recyclerView.onRefreshCompleted();
+//                            return;
+//                        }
+//                        page++;
+//                        Message msg = new Message();
+//                        msg.what = LOAD_MORE;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//                })
+//                .setOnPullDownListener(new OnPullDownListener() {
+//                    @Override
+//                    public void onPullDown() {
+//                        Message msg = new Message();
+//                        msg.what = PULL_DOWN;
+//                        mHandler.sendMessageDelayed(msg, 2000);
+//                    }
+//                })
+                .setOnLoadMoreListener(new OnLoadMoreListener() {
                     @Override
                     public void onLoadMore() {
                         //模拟网络请求
@@ -85,14 +110,6 @@ public class MainActivity extends AppCompatActivity {
                         mHandler.sendMessageDelayed(msg, 2000);
                     }
                 })
-//                .setOnPullDownListener(new OnPullDownListener() {
-//                    @Override
-//                    public void onPullDown() {
-//                        Message msg = new Message();
-//                        msg.what = PULL_DOWN;
-//                        mHandler.sendMessageDelayed(msg, 2000);
-//                    }
-//                })
                 .setOnItemClickListener(new RefreshRecyclerViewAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(RecyclerView.ViewHolder holder, int position) {
@@ -110,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
                     mDatas.add(0, "new Item");
                     break;
                 case LOAD_MORE:
-                    for (int i = 0; i < 1; i++){
+                    for (int i = 0; i < 10; i++){
                         mDatas.add("item" + (counts + i));
                     }
-                    counts = counts + 1;
+                    counts += 10;
                     break;
             }
             recyclerView.onRefreshCompleted();

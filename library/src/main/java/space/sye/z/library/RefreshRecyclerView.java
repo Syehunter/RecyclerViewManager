@@ -27,7 +27,7 @@ public class RefreshRecyclerView extends PtrFrameLayout {
     private LoadMoreRecyclerListener mOnScrollListener;
     private RecyclerMode mode;
     private PtrClassicDefaultHeader mHeaderView;
-    private int downY;
+    private float mDownY;
 
     public RefreshRecyclerView(Context context) {
         super(context);
@@ -209,5 +209,29 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         }
 
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent e) {
+        if (!isEnabled()) {
+            switch (e.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    mDownY = e.getY();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float currentY = e.getY();
+                    if ((currentY - mDownY) > 0) {
+                        //手指向下
+                        mOnScrollListener.isLoadingMoreEnabled = false;
+                    }
+                    else {
+                        //手指向上
+                        mOnScrollListener.isLoadingMoreEnabled = true;
+                    }
+                    break;
+            }
+        }
+        return super.dispatchTouchEvent(e);
+    }
+
 
 }
