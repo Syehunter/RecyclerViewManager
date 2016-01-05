@@ -10,11 +10,13 @@ import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
+import in.srain.cube.views.ptr.PtrUIHandler;
 import space.sye.z.library.listener.LoadMoreRecyclerListener;
 import space.sye.z.library.listener.OnBothRefreshListener;
 import space.sye.z.library.listener.OnLoadMoreListener;
 import space.sye.z.library.listener.OnPullDownListener;
 import space.sye.z.library.manager.RecyclerMode;
+import space.sye.z.library.widget.RefreshHeader;
 
 /**
  * Created by Syehunter on 2015/11/22.
@@ -26,7 +28,7 @@ public class RefreshRecyclerView extends PtrFrameLayout {
     private PtrFrameLayout.LayoutParams params;
     private LoadMoreRecyclerListener mOnScrollListener;
     private RecyclerMode mode;
-    private PtrClassicDefaultHeader mHeaderView;
+    private RefreshHeader mHeaderView;
     private float mDownY;
 
     public RefreshRecyclerView(Context context) {
@@ -63,7 +65,7 @@ public class RefreshRecyclerView extends PtrFrameLayout {
         //ViewPager滑动冲突
         disableWhenHorizontalMove(true);
 
-        mHeaderView = new PtrClassicDefaultHeader(mContext);
+        mHeaderView = new RefreshHeader(mContext);
         setHeaderView(mHeaderView);
         addPtrUIHandler(mHeaderView);
     }
@@ -183,15 +185,6 @@ public class RefreshRecyclerView extends PtrFrameLayout {
                 mOnScrollListener.setOnLoadMoreListener(listener);
             }
         }
-    }
-
-    public void setRefreshHeader(PtrClassicDefaultHeader headerView){
-        if (null != mHeaderView){
-            removePtrUIHandler(mHeaderView);
-        }
-        mHeaderView = headerView;
-        setHeaderView(mHeaderView);
-        addPtrUIHandler(mHeaderView);
     }
 
     public RecyclerView real(){
