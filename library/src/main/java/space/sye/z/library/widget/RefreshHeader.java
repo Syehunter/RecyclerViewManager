@@ -152,7 +152,7 @@ public class RefreshHeader extends FrameLayout implements PtrUIHandler {
         if (frame.isPullToRefresh()) {
             mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
+            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
         }
     }
 

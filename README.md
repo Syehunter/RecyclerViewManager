@@ -13,7 +13,7 @@ With RecyclerMode.PullDown replace setOnRefreshListener() to setOnPullDownListen
 	}
  	
  	dependencies {
-	    compile 'com.github.Syehunter:RecyclerViewManager:0.1.6.5'
+	    compile 'com.github.Syehunter:RecyclerViewManager:0.1.6.6'
 	}
 
 ![RecyclerViewManagerDemo.gif](http://7xn4z4.com1.z0.glb.clouddn.com/RecyclerViewManager.gif)
